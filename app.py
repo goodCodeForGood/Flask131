@@ -175,7 +175,11 @@ def register():
     return render_template('registration.html', form=form)
 
 
-
+@app.route('/home')
+def home():
+    #getting posts from database
+    posts = Posts.query.order_by(Posts.date_posted.desc()).all()
+    return render_template('home.html', posts = posts)
 
 #run flask app
 if __name__ == "__main__":
